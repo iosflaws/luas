@@ -1,3 +1,5 @@
+ToggleBind = "4" -- Works as Mouse buttons, these have to be held.
+
 --[[ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣴⠞⠋⠁⣀⣠⣴⣶⣾⣿⣷⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠆
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⠟⢻⣧⣤⣴⣿⠿⠋⠁⣴⡿⠿⢿⣿⣿⣿⣷⣶⣶⣶⣶⡶⠶⠚⠁⠀⠀⣠⣾⠏⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣴⣾⣿⣥⣤⣤⣭⣍⣁⡀⠀⠀⠘⣿⣇⠀⠀⠀⠈⠉⠉⠉⠉⠀⠀⠀⠀⢀⣠⣴⣿⠟⠁⠀⠀
@@ -20,28 +22,34 @@
 ⠀⠘⣾⡀⡏⠙⡗⠻⠟⢻⠚⢻⢹⠙⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠈⠓⠧⠴⣇⣴⣄⢼⣤⠟⠚⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 
-                        RECOIL CONTROL SCRIPT (RCS) V1.6 by @mjzt on YOUTUBE
+                        RECOIL CONTROL SCRIPT (RCS) V1.7 by @mjzt on YOUTUBE
 
 
 
 
 
-Patch Notes for Version 1.6:
-    Added Preset Recoil control modes,
-    Added Adjustable DelayRate,
+Patch Notes for Version 1.7:
+    Added Rapid-Fire
 
 Possible Future Features:
   Bloom Reduction (Will just attempt to patch bloom position, by reseting weapon fire.)
   Require ADS (If set to false, it'll continue, without the need of ADS'ing
 --]]
 
+---                                R A P I D  F I R E                                ----
 
+
+EnableRapidFire = false -- When Set to false, it'll turn off Rapid Fire!
+ToggleBind = "4" --- Mouse Buttons, not Keyboard. MUST be HELD DOWN.
+
+---                              R E C O I L  C O N T R O L                               ----
+
+EnableRCS = true --- When Set to false, it'll turn off Recoil Control!
 RecoilControlMode = "Custom" --- Presets: "Low", "Medium", "High", "Ultra", "Insanity", "Custom"
 RcCustomStrength = 7 -- Value MUST be ROUNDED! No Decimal values such as 6.5!
 RequireToggle = true -- Change to false if you want it to always be on.
 ToggleKey = "CapsLock" -- Usable Keys: "CapsLock", "NumLock", "ScrollLock"
-DelayRate = 7 -- DO NOT CHANGE IF YOU DON'T KNOW WHAT YOU'RE DOING.
-
+DelayRate = 3 -- DO NOT CHANGE IF YOU DON'T KNOW WHAT YOU'RE DOING.
 
 
 
@@ -60,7 +68,8 @@ Things to note:
 1: I did NOT make the Recoil Control Code, I just simplified everything, so you can adjust it to your needs
 2: You don't need to hold down your toggle key, its a toggle.
 3: You must hold mouse1 and mouse2, or else IT WONT WORK!
-4: ThrottleRate Works in MS, the lower the faster. 7ms = 0.07s, 2000ms = 2s. However the preset throttle rate is perfect for most FPS games. 
+4: DelayRate Works in MS, the lower the faster. 7ms = 0.07s, 2000ms = 2s. However the preset Delay rate is perfect for most FPS games. 
+5: RAPID FIRE AND RECOIL CONTROL DON'T WORK TOGETHER CURRENTLY.
 --]]
 
 
@@ -89,6 +98,7 @@ end
 OutputLogMessage("@mjzt on Youtube!\n")
 EnablePrimaryMouseButtonEvents  (true);
 function OnEvent(event,arg)
+if EnableRCS ~= false then
 if RequireToggle ~= false then
     if IsKeyLockOn(ToggleKey)then
         if IsMouseButtonPressed(3)then
@@ -116,4 +126,18 @@ else
             until not IsMouseButtonPressed(3)
         end
     end
+else 
+end  
+--- Rapid Fire ---
+
+if EnableRapidFire ~= false then
+if IsMouseButtonPressed(ToggleBind)then
+      repeat
+        Sleep(0)
+        PressAndReleaseMouseButton(1)
+        until not IsMouseButtonPressed(ToggleBind)
+        end
+  else 
+
+      end 
 end
