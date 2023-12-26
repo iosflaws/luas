@@ -20,14 +20,14 @@
 ⠀⠘⣾⡀⡏⠙⡗⠻⠟⢻⠚⢻⢹⠙⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠈⠓⠧⠴⣇⣴⣄⢼⣤⠟⠚⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 
-                                    R E C O I L  C O N T R O L  S C R I P T  (R C S)  V 1 . 7  b y  @ m j z t  o n  Y O U T U B E
+                                    R E C O I L  C O N T R O L  S C R I P T  (R C S)  V 1 . 8  b y  @ m j z t  o n  Y O U T U B E
 
 
 
 
 
-Patch Notes for Version 1.7:
-    Added Rapid-Fire
+Patch Notes for Version 1.8:
+    Deleted Rapid Fire
 
 Possible Future Features:
   Bloom Reduction (Will just attempt to patch bloom position, by reseting weapon fire.)
@@ -36,9 +36,6 @@ Possible Future Features:
 
 ---                                 R A P I D  F I R E                                ----
 
-
-EnableRapidFire = false -- When Set to false, it'll turn off Rapid Fire!
-ToggleBind = "4" --- Mouse Buttons, not Keyboard. MUST be HELD DOWN.
 
 ---                              R E C O I L  C O N T R O L                               ----
 
@@ -133,17 +130,4 @@ else
     end
 else 
 end  
-  
---- Rapid Fire ---
-
-if EnableRapidFire ~= false then
-if IsMouseButtonPressed(ToggleBind)then
-      repeat
-        Sleep(0)
-        PressAndReleaseMouseButton(1)
-        until not IsMouseButtonPressed(ToggleBind)
-        end
-  else 
-
-      end 
 end
